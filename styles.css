@@ -1,0 +1,45 @@
+body {
+    margin: 0;
+    padding: 0;
+  }
+  
+.frame {
+    display: block;
+    width: 100vw;
+    height: 100vh;
+    max-width: 100%;
+    margin: 0;
+    padding: 0;
+    border: 0 none;
+    box-sizing: border-box;
+}
+
+
+#menucontainer {
+    position: absolute; /* Sit on top of the page content */
+    top: 6%;
+    right: 1%;
+    white-space: nowrap;
+}
+
+.menuitem{
+    font-size: 20pt;
+    opacity: 0.6;
+    color: gray;
+    cursor: pointer; /* Add a pointer on hover */
+}
+
+.menuitem:hover{
+    color: white;
+    opacity: 1;
+}
+
+.menuitem:active{
+    color: white;
+    opacity: 1;
+}
+
+#move-btn{
+    -webkit-app-region: drag;
+}
+

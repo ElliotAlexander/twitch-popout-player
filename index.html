@@ -1,0 +1,98 @@
+
+<!DOCTYPE html>
+<html class="twitch-player">
+    <head>
+        <title>Twitch</title>
+        <meta http-equiv="Content-type" content="text/html; charset=utf-8">
+        <meta name="viewport" content="width=device-width,initial-scale=1">
+        <link rel="stylesheet" href="styles.css">
+    </head>
+
+
+    <script>
+            require('electron').ipcRenderer.on('ping', (event, message) => {
+                console.log(message);
+              updateStream();
+            })
+    </script>
+        
+
+    <body>
+        <div id="menucontainer" onmouseover="onhoverbuttons()" onmouseout="onhoverbuttonsexit()">
+            <div class="menuitem" id="close-btn">&#x2716;</div>
+            <div class="menuitem" id="move-btn">&#10018;</div>
+        </div>
+        <iframe id="twitch-player"
+            src="http://player.twitch.tv/?channel=dota2ti"
+            height="100%"
+            width="100%"
+            frameborder="0"
+            scrolling="no"
+            allowfullscreen="yes"
+            class="frame"
+            >
+        </iframe>
+    </body>
+
+    <script>
+        const prompt = null;
+        (function () {
+            const {app, BrowserWindow} = require('electron').remote
+            function init() {
+                document.getElementById("close-btn").addEventListener("click", (e) => {
+                    var window = BrowserWindow.getFocusedWindow();
+                    window.close();
+                    prompt = null;
+                });
+                updateStream();
+            };
+
+            document.onreadystatechange =  () => {
+                if (document.readyState == "complete") {
+                    init();
+                }
+            };
+        })();
+
+
+        function onhoverbuttons(){
+            var cols = document.getElementsByClassName('menuitem');
+            for(i=0; i<cols.length; i++) {
+                cols[i].style.color = 'white';
+                cols[i].style.opacity = '1';
+            }
+        }
+
+        function onhoverbuttonsexit(){
+            var cols = document.getElementsByClassName('menuitem');
+            for(i=0; i<cols.length; i++) {
+                cols[i].style.color = 'gray';
+                cols[i].style.opacity = '0.6';
+            }
+        }
+
+
+        function updateStream(){
+            prompt = require('electron-prompt');
+
+            prompt({
+                title: 'Enter channel name (i.e. shroud):',
+                label: 'URL:',
+                value: 'shroud',
+                inputAttrs: {
+                    type: 'url'
+                },
+                type: 'input'
+            })
+            .then((r) => {
+                if(r === null) {
+                    console.log('user cancelled');
+                } else {
+                    document.getElementById('twitch-player').src = "http://player.twitch.tv/?channel=".concat(r);
+                    
+                }
+            })
+            .catch(console.error);
+        }
+    </script>
+</html>
