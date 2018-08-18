@@ -35,7 +35,6 @@
     </body>
 
     <script>
-        const prompt = null;
         (function () {
             const {app, BrowserWindow} = require('electron').remote
             function init() {
@@ -73,7 +72,7 @@
 
 
         function updateStream(){
-            prompt = require('electron-prompt');
+            const prompt = require('electron-prompt');
 
             prompt({
                 title: 'Enter channel name (i.e. shroud):',

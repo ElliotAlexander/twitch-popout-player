@@ -1,0 +1,4 @@
+release-builds/
+package-lock.json
+*.asar
+node_modules/
