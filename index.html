@@ -35,23 +35,25 @@
     </body>
 
     <script>
-        (function () {
-            const {app, BrowserWindow} = require('electron').remote
-            function init() {
-                document.getElementById("close-btn").addEventListener("click", (e) => {
-                    var window = BrowserWindow.getFocusedWindow();
-                    window.close();
-                    prompt = null;
-                });
-                updateStream();
-            };
+        const {app, BrowserWindow} = require('electron').remote
 
-            document.onreadystatechange =  () => {
-                if (document.readyState == "complete") {
-                    init();
-                }
-            };
-        })();
+               
+        document.onreadystatechange =  () => {
+            if (document.readyState == "complete") {
+                init();
+            }
+        };
+        
+        function init() {
+            document.getElementById("close-btn").addEventListener("click", (e) => {
+                var window = BrowserWindow.getFocusedWindow();
+                window.close();
+                prompt = null;
+            });
+            updateStream();
+        };
+
+ 
 
 
         function onhoverbuttons(){
