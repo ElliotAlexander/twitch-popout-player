@@ -15,7 +15,7 @@
               updateStream();
             })
     </script>
-        
+
 
     <body>
         <div id="menucontainer" onmouseover="onhoverbuttons()" onmouseout="onhoverbuttonsexit()">
@@ -37,23 +37,22 @@
     <script>
         const {app, BrowserWindow} = require('electron').remote
 
-               
+
         document.onreadystatechange =  () => {
             if (document.readyState == "complete") {
                 init();
             }
         };
-        
+
         function init() {
             document.getElementById("close-btn").addEventListener("click", (e) => {
                 var window = BrowserWindow.getFocusedWindow();
                 window.close();
                 prompt = null;
             });
-            updateStream();
         };
 
- 
+
 
 
         function onhoverbuttons(){
@@ -78,7 +77,7 @@
 
             prompt({
                 title: 'Enter channel name (i.e. shroud):',
-                label: 'URL:',
+                label: 'name:',
                 value: 'shroud',
                 inputAttrs: {
                     type: 'url'
@@ -90,7 +89,7 @@
                     console.log('user cancelled');
                 } else {
                     document.getElementById('twitch-player').src = "http://player.twitch.tv/?channel=".concat(r);
-                    
+
                 }
             })
             .catch(console.error);

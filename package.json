@@ -7,8 +7,10 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
-    "electron": "^2.0.7",
-    "electron-winstaller": "^2.6.4"
+    "electron": "^3.0.2",
+    "electron-installer-dmg": "^2.0.0",
+    "electron-packager": "^12.1.2",
+    "electron-winstaller": "^2.7.0"
   },
   "dependencies": {
     "asar": "^0.14.3",
@@ -17,9 +19,10 @@
   },
   "scripts": {
     "start": "electron . ",
-    "package-mac": "electron-packager . --overwrite --platform=darwin --arch=x64 --icon=assets/twitch.icns --prune=true --out=release-builds",
-    "package-win": "electron-packager . twitch-popout-player --overwrite --asar=true --platform=win32 --arch=ia32 --icon=\"assets/icon.ico\" --prune=true --out=release-builds --version-string.CompanyName=CE --version-string.FileDescription=CE --version-string.ProductName=\"Twitch Popout Player\"",
-    "package-linux": "electron-packager . twitch-popout-player --overwrite --asar=true --platform=linux --arch=x64 --icon=assets/twitch.png --prune=true --out=release-builds",
-    "create-installer-win": "node installers/windows/createinstaller.js"
+    "package-mac": "electron-packager . --overwrite --platform=darwin --arch=x64 --icon=assets/icons/darwin/twitch.icns --prune=true --out=release-builds",
+    "package-win": "electron-packager . twitch-popout-player --overwrite --asar=true --platform=win32 --arch=ia32 --icon=\"assets/icons/windows/icon.ico\" --prune=true --out=release-builds --version-string.CompanyName=CE --version-string.FileDescription=CE --version-string.ProductName=\"Twitch Popout Player\"",
+    "package-linux": "electron-packager . twitch-popout-player --overwrite --asar=true --platform=linux --arch=x64 --icon=assets/icons/linux/twitch.ico --prune=true --out=release-builds",
+    "create-installer-win": "node installers/windows/createinstaller.js",
+    "create-installer-mac": "electron-installer-dmg ./release-builds/Twitch\\ Popout\\ Player-darwin-x64/Twitch\\ Popout\\ Player.app  Twitch-Popout-Player --out=installers/darwin --overwrite --icon=assets/icons/darwin/twitch.icns"
   }
 }
