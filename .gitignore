@@ -1,4 +1,7 @@
 release-builds/
 package-lock.json
-*.asar
 node_modules/
+*.asar
+*.dmg
+*.exe
+.DS_STORE
